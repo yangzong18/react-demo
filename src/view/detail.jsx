@@ -1,9 +1,10 @@
 import React from 'react';
+import ReacDom from 'react-dom'
 export default class Detail extends React.Component {
 
     handlerEdit() {
         let item = {};
-        let editTabel = React.findDOMNode(this.refs.editTabel);
+        let editTabel = ReacDom.findDOMNode(this.refs.editTabel);
         let sex = editTabel.querySelector('#staffEditSex');
         let id = editTabel.querySelector('#staffEditId');
 
@@ -18,7 +19,7 @@ export default class Detail extends React.Component {
 		 *表单验证
 		 */
         if (item.name == '' || item.age == '' || item.descrip == '') {
-            let tips = React.findDOMNode(this.refs.DtipsUnDone);
+            let tips = ReacDom.findDOMNode(this.refs.DtipsUnDone);
             tips.style.display = 'block';
             setTimeout(function () {
                 tips.style.display = 'none';
@@ -28,7 +29,7 @@ export default class Detail extends React.Component {
         //非负整数
         let numReg = /^\d+$/;
         if (!numReg.test(item.age) || parseInt(item.age) > 150) {
-            let tips = React.findDOMNode(this.refs.DtipsUnAge);
+            let tips = ReacDom.findDOMNode(this.refs.DtipsUnAge);
             tips.style.display = 'block';
             setTimeout(function () {
                 tips.style.display = 'none';
@@ -39,7 +40,7 @@ export default class Detail extends React.Component {
         this.props.editDetail(item);
 
         //此处应在返回修改成功信息后确认
-        let tips = React.findDOMNode(this.refs.Dtips);
+        let tips = ReacDom.findDOMNode(this.refs.Dtips);
         tips.style.display = 'block';
         setTimeout(function () {
             tips.style.display = 'none';
@@ -53,14 +54,14 @@ export default class Detail extends React.Component {
     componentDidUpdate() {
         if (this.props.staffDetail == null) { }
         else {
-            let selSex = React.findDOMNode(this.refs.selSex);
+            let selSex = ReacDom.findDOMNode(this.refs.selSex);
             for (let i = 0; i < selSex.options.length; i++) {
                 if (selSex.options[i].value == this.props.staffDetail.info.sex) {
                     selSex.options[i].selected = 'selected';
                     break;
                 }
             }
-            let selId = React.findDOMNode(this.refs.selId);
+            let selId = ReacDom.findDOMNode(this.refs.selId);
             for (let i = 0; i < selId.options.length; i++) {
                 if (selId.options[i].value == this.props.staffDetail.info.id) {
                     selId.options[i].selected = 'selected';

@@ -1,23 +1,24 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 export default class Header extends React.Component {
 
     //排序
     handlerOrderChange() {
-        let sel = React.findDOMNode(this.refs.selOrder);
+        let sel = ReactDOM.findDOMNode(this.refs.selOrder);
         let selValue = sel.options[sel.selectedIndex].value;
         this.props.sortStaff(selValue);
     }
 
     //筛选
     handlerIdChange() {
-        let sel = React.findDOMNode(this.refs.selId);
+        let sel = ReactDOM.findDOMNode(this.refs.selId);
         let selValue = sel.options[sel.selectedIndex].value;
         this.props.filtStaff(selValue);
     }
 
     //search
     handlerSearch() {
-        let bar = React.findDOMNode(this.refs.searchBar);
+        let bar = ReactDOM.findDOMNode(this.refs.searchBar);
         let value = bar.value;
         this.props.searchStaff(value);
     }
