@@ -27,6 +27,7 @@ export default class STAFF {
             new staffItem(STAFF.rawData[9]),
             new staffItem(STAFF.rawData[10])
         ];
+        console.log(this.allStaff)
         this.staff = [];
         this.sortType = 0;//0-身份 1-年龄升 2-年龄降
         this.filtType = 0;//0-all 1-主任 2-老师 3-学生 4-实习
@@ -49,7 +50,7 @@ export default class STAFF {
     //删
     removeStaffItem(key) {
         let newStaff = this.allStaff.filter(item => {
-            return item.key != key;
+            return item.key !== key;
         });
         this.allStaff = newStaff;
         //筛选 搜多过滤
@@ -61,7 +62,7 @@ export default class STAFF {
     //改
     editStaffItem(item) {
         this.allStaff.forEach(staffItem => {
-            if (staffItem.key == item.key) {
+            if (staffItem.key === item.key) {
                 staffItem.info.name = item.name;
                 staffItem.info.sex = item.sex;
                 staffItem.info.age = item.age;
@@ -84,22 +85,22 @@ export default class STAFF {
                 break;
             case 1:
                 this.staff = this.allStaff.filter(item => {
-                    return item.info.id == '主任';
+                    return item.info.id === '主任';
                 });
                 break;
             case 2:
                 this.staff = this.allStaff.filter(item => {
-                    return item.info.id == '老师';
+                    return item.info.id === '老师';
                 });
                 break;
             case 3:
                 this.staff = this.allStaff.filter(item => {
-                    return item.info.id == '学生';
+                    return item.info.id === '学生';
                 });
                 break;
             case 4:
                 this.staff = this.allStaff.filter(item => {
-                    return item.info.id == '实习';
+                    return item.info.id === '实习';
                 });
                 break;
             default: break;
@@ -175,10 +176,10 @@ export default class STAFF {
         this.word = word;
         //在staff中搜索
         this.staff = this.staff.filter(item => {
-            return item.info.name.indexOf(word) != -1 ||
-                (item.info.age + '').indexOf(word) != -1 ||
-                item.info.id.indexOf(word) != -1 ||
-                item.info.sex.indexOf(word) != -1;
+            return item.info.name.indexOf(word) !== -1 ||
+                (item.info.age + '').indexOf(word) !==-1 ||
+                item.info.id.indexOf(word) !== -1 ||
+                item.info.sex.indexOf(word) !== -1;
         });
     }
 

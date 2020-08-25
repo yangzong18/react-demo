@@ -21,8 +21,8 @@ export default class Item extends React.Component {
                 <td className='itemTd'>{this.props.item.info.id}</td>
                 <td className='itemTd'>{this.props.item.info.sex}</td>
                 <td className='itemTd'>
-                    <a className="itemBtn" onClick={this.handlerDelete.bind(this)}>删除</a>
-                    <a className="itemBtn" onClick={this.handlerDetail.bind(this)}>详情</a>
+                    <a href="/#" className="itemBtn" onClick={this.handlerDelete.bind(this)}>删除</a>
+                    <a href="/#" className="itemBtn" onClick={this.handlerDetail.bind(this)}>详情</a>
                 </td>
             </tr>
         );

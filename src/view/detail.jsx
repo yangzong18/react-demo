@@ -18,7 +18,7 @@ export default class Detail extends React.Component {
 		/*
 		 *表单验证
 		 */
-        if (item.name == '' || item.age == '' || item.descrip == '') {
+        if (item.name === '' || item.age === '' || item.descrip ==='') {
             let tips = ReacDom.findDOMNode(this.refs.DtipsUnDone);
             tips.style.display = 'block';
             setTimeout(function () {
@@ -56,14 +56,14 @@ export default class Detail extends React.Component {
         else {
             let selSex = ReacDom.findDOMNode(this.refs.selSex);
             for (let i = 0; i < selSex.options.length; i++) {
-                if (selSex.options[i].value == this.props.staffDetail.info.sex) {
+                if (selSex.options[i].value === this.props.staffDetail.info.sex) {
                     selSex.options[i].selected = 'selected';
                     break;
                 }
             }
             let selId = ReacDom.findDOMNode(this.refs.selId);
             for (let i = 0; i < selId.options.length; i++) {
-                if (selId.options[i].value == this.props.staffDetail.info.id) {
+                if (selId.options[i].value === this.props.staffDetail.info.id) {
                     selId.options[i].selected = 'selected';
                     break;
                 }

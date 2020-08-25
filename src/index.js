@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      staff: new Staff,
+      staff: new Staff(),
       staffDetail: null
     };
   }
@@ -38,7 +38,7 @@ class App extends React.Component {
   detailStaffItem(key) {
     this.setState({
       staffDetail: this.state.staff.staff.filter(item => {
-        return item.key == key;
+        return item.key === key;
       })[0]
     });
   }
