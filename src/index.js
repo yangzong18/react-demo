@@ -84,6 +84,8 @@ class App extends React.Component {
 
 
   render() {
+    console.log('this.state.staff.staff')
+    console.log(this.state.staff.staff)
     return (
       <div>
         <Header sortStaff={this.sortStaff.bind(this)} filtStaff={this.filtStaff.bind(this)} searchStaff={this.searchStaff.bind(this)} />

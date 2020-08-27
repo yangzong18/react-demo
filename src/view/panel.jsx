@@ -13,6 +13,8 @@ export default class Panel extends React.Component {
             });
         }
 
+        console.log(items)
+
         return (
             <table className='itemPanel'>
                 <tbody>
