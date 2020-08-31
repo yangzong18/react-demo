@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware } from 'redux'
-// import userReducer from './reducer'
+import userReducer from './reducer'
 import thunk from 'redux-thunk'
 
 let store = createStore(
-    // userReducer,
+    userReducer,
     applyMiddleware(thunk)
 )
 
