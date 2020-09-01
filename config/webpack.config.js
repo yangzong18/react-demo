@@ -41,6 +41,12 @@ const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
 );
 
+// first-loading
+const loading = {
+  html: fs.readFileSync(path.resolve(__dirname, '../src/assets/loading/loading.html')),
+  css: '<style id="ui">' + fs.readFileSync(path.resolve(__dirname, '../src/assets/loading/loading.css')) + '</style>',
+}
+
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
@@ -512,10 +518,10 @@ module.exports = function (webpackEnv) {
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
-          {},
           {
             inject: true,
             template: paths.appHtml,
+            loading: loading
           },
           isEnvProduction
             ? {

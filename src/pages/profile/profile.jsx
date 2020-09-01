@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '@/components/header/header'
 import Footer from '@/components/footer/footer'
+import AlertTip from '@/components/alert_tip/alert_tip'
 import PropTypes from 'prop-types'
 import QueueAnim from 'rc-queue-anim'
 import { saveUserInfo } from '@/store/action'
@@ -63,6 +64,25 @@ class Profile extends Component {
             this.initData(nextProps);
         }
     }
+    shouldComponentUpdate(nextProps, nextState) {   // 判断是否要更新render, return true 更新  return false不更新
+        return !is(fromJS(this.props), fromJS(nextProps)) || !is(fromJS(this.state), fromJS(nextState))
+    }
+    handleClick = (type) => {
+        let alertText
+        switch (type) {
+            case 'download':
+                alertText = '请到官方网站下载'
+                break
+            case 'unfinished':
+                alertText = '功能尚未开发'
+                break
+            default:
+        }
+        this.setState({
+            hasAlert: !this.state.hasAlert,
+            alertText,
+        })
+    }
     render() {
         return (
             <div className='profile-container'>
@@ -100,11 +120,48 @@ class Profile extends Component {
                             </ul>
                         </section>
                         <section className='profile-list'>
-                        <QueueAnim deley='0.4'></QueueAnim>
+                            <QueueAnim deley='0.4'>
+                                <div onClick={this.handleClick.bind(this, 'unfinished')} className='myorder' key='i2'>
+                                    <div className='icon-dingdan order-icon'></div>
+                                    <div className='myorder-text'>
+                                        <span>我的订单</span>
+                                        <div className='icon-arrow-right'></div>
+                                    </div>
+                                </div>
+                                <a href="https://home.m.duiba.com.cn/#/chome/index" className='myorder' key='i3'>
+                                    <div className='icon-jifen1 order-icon'></div>
+                                    <div className='myorder-text'>
+                                        <span>积分商城</span>
+                                        <div className='icon-arrow-right'></div>
+                                    </div>
+                                </a>
+                                <div onClick={this.handleClick.bind(this, 'unfinished')} className='myorder' key='i4' >
+                                    <div className='icon-huangguan order-icon'></div>
+                                    <div className='myorder-text'>
+                                        <span>饿了么会员卡</span>
+                                        <div className='icon-arrow-right'></div>
+                                    </div>
+                                </div>
+                                <div onClick={this.handleClick.bind(this, 'unfinished')} className='myorder' key='i5'>
+                                    <div className='icon-yk_fangkuai_fill order-icon'></div>
+                                    <div className='myorder-text'>
+                                        <span>服务中心</span>
+                                        <div className='icon-arrow-right'></div>
+                                    </div>
+                                </div>
+                                <div onClick={this.handleClick.bind(this, 'download')} className='myorder' key='i6'>
+                                    <div className='icon-changyonglogo40 order-icon'></div>
+                                    <div className='myorder-text'>
+                                        <span>下载饿了么APP</span>
+                                        <div className='icon-arrow-right'></div>
+                                    </div>
+                                </div>
+                            </QueueAnim>
                         </section>
                     </section>
                     <Footer key='s3' />
                 </QueueAnim>
+                {this.state.hasAlert && <AlertTip logout={() => { return false }} closeTip={this.handleClick} alertText={this.state.alertText} />}
             </div>
         );
     }
