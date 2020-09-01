@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './assets/css/index.css';
 import * as serviceWorker from './serviceWorker';
 import Route from './router'
 import store from '@/store'
@@ -16,7 +15,7 @@ const render = Component => {
         <Component />
       </AppContainer>
     </Provider>,
-    document.getElementById('app')
+    document.getElementById('root')
   )
 };
 

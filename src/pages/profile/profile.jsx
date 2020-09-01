@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '@/assets/css/index.css';
 import Header from '@/components/header/header'
 import Footer from '@/components/footer/footer'
 import PropTypes from 'prop-types'
@@ -10,6 +9,7 @@ import API from '../../api/api'
 import { is, fromJS } from 'immutable';  // 保证数据的不可变
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import './profile.scss'
 
 class Profile extends Component {
     static propTypes = {
@@ -52,7 +52,7 @@ class Profile extends Component {
         this.props.history.goBack()
     }
     componentDidMount() {
-        if (!this.props.userInfo.user_id) {
+        if (this.props.userInfo.user_id) {
             this.getUserInfo()
         } else {
             this.initData()
@@ -71,7 +71,7 @@ class Profile extends Component {
                     <section key='s2'>
                         <section className='profile-number' >
                             <Link to={this.props.userInfo && this.props.userInfo.user_id ? '/info' : '/login'} className='profile-link'>
-                                <img src={this.props.userInfo.imgpath} alt='img is wrong' className='private-image' />
+                                <img src={this.props.userInfo.imgpath ? this.props.userInfo.imgpath : getImgPath()} alt='img is wrong' className='private-image' />
                                 <div className='user-info'>
                                     <div>{this.state.username}</div>
                                     <div>
@@ -82,6 +82,25 @@ class Profile extends Component {
                                 <div className='icon-arrow-right'>
                                 </div>
                             </Link>
+                        </section>
+                        <section className='info-data' key='i1'>
+                            <ul className='clear'>
+                                <Link to='/balance' className='info-data-link'>
+                                    <span className='info-data-top'><b>{parseInt(this.state.balance).toFixed(2)}</b>元</span>
+                                    <span className='info-data-bottom'>我的余额</span>
+                                </Link>
+                                <Link to='/balance' className='info-data-link'>
+                                    <span className='info-data-top'><b>{this.state.count}</b>个</span>
+                                    <span className='info-data-bottom'>我的优惠</span>
+                                </Link>
+                                <Link to='/balance' className='info-data-link'>
+                                    <span className='info-data-top'><b>{this.state.pointNumber}</b>分</span>
+                                    <span className='info-data-bottom'>我的积分</span>
+                                </Link>
+                            </ul>
+                        </section>
+                        <section className='profile-list'>
+                        <QueueAnim deley='0.4'></QueueAnim>
                         </section>
                     </section>
                     <Footer key='s3' />

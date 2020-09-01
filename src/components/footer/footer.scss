@@ -27,15 +27,12 @@
     }
     .icon-zhinanzhen{
       @include font(0.86rem, #666);
-      margin-top: -0.2rem;
     }
     .icon-dingdan{
       @include font(0.80rem, #666);
-      margin-top: -0.2rem;
     }
     .icon-account{
       @include font(0.80rem, #666);
-      margin-top: -0.2rem;
       fill: $blue;
     }
     span{

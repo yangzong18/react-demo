@@ -54,6 +54,7 @@ class API extends Server {
     async getUser(data) {
         try {
             let result = await this.axios('get', '/v1/user' + getUrlConcat(data))
+            console.log(result)
             if (result.status !== 0 && (result instanceof Object)) {
                 return result || []
             } else {
@@ -61,7 +62,7 @@ class API extends Server {
                     tip: '获取用户信息失败',
                     response: result,
                 }
-                throw err
+                return err
             }
         } catch (err) {
             throw err
